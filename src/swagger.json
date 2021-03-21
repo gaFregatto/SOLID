@@ -198,6 +198,148 @@
           }
         }
       }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Retorna perfil de um usuário específico.",
+        "parameters": [{
+          "name": "user_id",
+          "required": true,
+          "in": "path",
+          "description": "ID do usuário."
+        }],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "uuidv4"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "date"
+                    },
+                    "updated_at": {
+                      "type": "date"
+                    }
+                  },
+                  "example": {
+                    "id": "ef6a1bd1-9b6e-41a9-a38e-83119eac8341",
+                    "name": "Randolf",
+                    "admin": true,
+                    "email": "randolf@gmail.com",
+                    "created_at": "2021-03-20T14:19:29.470Z",
+                    "updated_at": "2021-03-20T14:19:29.470Z"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User not found."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "tags": ["users"],
+        "summary": "Define usuário como administrador.",
+        "parameters": [{
+          "name": "user_id",
+          "required": true,
+          "in": "path",
+          "schema": {
+            "type": "string($uuid)"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Operação realizada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "uuidv4"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "date"
+                    },
+                    "updated_at": {
+                      "type": "date"
+                    }
+                  },
+                  "example": {
+                    "id": "ef6a1bd1-9b6e-41a9-a38e-83119eac8341",
+                    "name": "Randolf",
+                    "admin": true,
+                    "email": "randolf@gmail.com",
+                    "created_at": "2021-03-20T14:19:29.470Z",
+                    "updated_at": "2021-03-20T14:19:29.470Z"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "User not found."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
